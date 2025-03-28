@@ -1,0 +1,438 @@
+body {
+    font-family: Helvetica, Arial, sans-serif; /* Change to Helvetica */
+    text-align: center;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    height: auto; /* Allow the body to grow with content */
+    overflow-x: hidden; /* Prevent horizontal scrolling but allow vertical scrolling */
+    background-color: #f0f8ff; /* Default background color */
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+    background-size: cover; /* Ensure the background covers the entire container */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+}
+
+#passcode-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center the content vertically */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove padding */
+    background: radial-gradient(circle, #1a1a2e, #16213e); /* Night sky gradient */
+    overflow: hidden; /* Ensure stars don't overflow */
+    position: relative; /* For star positioning */
+    color: white; /* Change text color to white */
+    z-index: 1; /* Ensure it is above the background */
+    background-size: cover; /* Ensure the background covers the entire container */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+}
+
+#passcode-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 0; /* Ensure stars are behind other elements */
+    pointer-events: none; /* Prevent the background from blocking interactions */
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite ease-in-out alternate; /* Faster twinkling effect */
+    opacity: 0.6; /* Slight transparency for a softer look */
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Add a glow effect */
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0.3; /* Dimmer at the start and end */
+        transform: scale(0.8); /* Slightly smaller */
+    }
+    50% {
+        opacity: 1; /* Fully bright in the middle */
+        transform: scale(1.2); /* Slightly larger */
+    }
+}
+
+#main-content {
+    margin: 0; /* Remove any default margin */
+    padding: 0; /* Remove any default padding */
+    display: none; /* Ensure it starts hidden */
+    z-index: 1; /* Ensure it doesn't overlap the title */
+    padding-bottom: 150px; /* Increased padding to ensure space for the animation */
+    background: linear-gradient(to bottom, rgba(255, 182, 193, 0.3), rgba(255, 240, 245, 0.3)), url('https://www.transparenttextures.com/patterns/clouds.png'); /* Light pink clouds */
+    background-size: cover; /* Ensure the background covers the entire container */
+    background-repeat: no-repeat; /* Prevent tiling */
+    background-attachment: fixed; /* Keep the background fixed during scrolling */
+    height: 100vh; /* Ensure it covers the full viewport height */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    overflow: visible; /* Ensure the animation is not clipped */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center content horizontally */
+    position: absolute; /* Ensure it starts at the top of the viewport */
+    top: 0; /* Remove any offset from the top */
+    left: 0; /* Ensure it spans the full width */
+    width: 100%; /* Cover the full width of the viewport */
+}
+
+#play-song {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+#play-song:hover {
+    background-color: #ff6f61;
+    color: white;
+}
+
+#typing-text {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    font-size: 1.2em;
+    margin: 20px auto;
+    width: 90%; /* Ensure the text container spans the full width */
+    white-space: normal; /* Allow wrapping for long text */
+    overflow: hidden;
+    line-height: 1.5; /* Add spacing between lines */
+    animation: none; /* Remove CSS animation since it's handled in JavaScript */
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    from {
+        border-color: transparent;
+    }
+    to {
+        border-color: black;
+    }
+}
+
+#floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 100; /* Ensure it's above other elements */
+}
+
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    max-width: 30px; /* Limit size */
+    max-height: 30px; /* Limit size */
+    background-color: #ff69b4; /* Changed color to pink */
+    transform: rotate(45deg);
+    animation: float 5s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff69b4; /* Changed color to pink */
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -10px;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+#signature {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    position: absolute; /* Position it relative to the main content */
+    bottom: 10px; /* Place it at the bottom */
+    width: 100%; /* Ensure it spans the full width */
+    text-align: center; /* Center the text */
+    font-size: 0.9em;
+    color: #555;
+    z-index: 1; /* Ensure it is above the background */
+}
+
+#envelope {
+    position: relative;
+    width: 200px; /* Adjusted width for simplicity */
+    height: 120px; /* Adjusted height for simplicity */
+    margin: 20px auto;
+    cursor: pointer;
+    perspective: 1000px; /* Enable 3D effect */
+    background-color: #ff99cc; /* Updated to a lighter pink color for the envelope body */
+    border: 2px solid #ff66b2; /* Add a border with a darker pink for clarity */
+    border-radius: 5px; /* Slight rounding for a polished look */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+#envelope-top {
+    position: absolute;
+    width: 100%;
+    height: 50%; /* Adjusted height for the top flap */
+    background-color: #ff99cc; /* Updated to match the envelope body */
+    transform-origin: bottom center; /* Ensure correct rotation point */
+    transition: transform 0.5s ease-in-out; /* Smooth animation */
+    clip-path: polygon(50% 0, 100% 100%, 0 100%); /* Triangular top flap */
+    z-index: 2; /* Ensure it is above the bottom part */
+    border-bottom: 2px solid #ff66b2; /* Add a border line for separation */
+}
+
+#envelope-bottom {
+    position: absolute;
+    width: 100%;
+    height: 50%; /* Adjusted height for the bottom part */
+    bottom: 0;
+    background-color: #ff99cc; /* Updated to match the envelope body */
+    z-index: 1; /* Ensure it is below the top flap */
+}
+
+#message {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    position: absolute;
+    top: 50%; /* Center vertically within the envelope */
+    left: 50%; /* Center horizontally within the envelope */
+    transform: translate(-50%, -50%) scale(0); /* Start hidden and centered */
+    width: 80%; /* Adjusted width for better fit */
+    text-align: center;
+    font-size: 1em; /* Slightly smaller font for simplicity */
+    color: white;
+    background-color: #ff66b2; /* Darker pink for the message background */
+    padding: 10px; /* Add padding for better appearance */
+    border-radius: 5px; /* Rounded corners */
+    transition: transform 0.5s ease-in-out; /* Smooth animation */
+    z-index: 3; /* Ensure it appears above the envelope */
+}
+
+#envelope.open #envelope-top {
+    transform: rotateX(-180deg); /* Flip the top flap */
+}
+
+#envelope.open #message {
+    transform: translate(-50%, -50%) scale(1); /* Show the message */
+}
+
+/* Add a white heart in the middle of the envelope */
+#envelope-heart {
+    position: absolute;
+    top: 50%; /* Center vertically where the triangular flap ends */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 75%, 18% 100%, 0% 38%);
+    z-index: 3; /* Ensure it appears above the envelope */
+}
+
+#cronometer-description {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    font-size: 1.2em; /* Slightly larger font for the description */
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#cronometer {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    font-size: 2em; /* Increased font size for better visibility */
+    font-weight: bold;
+    color: #ff69b4; /* Match the envelope color */
+    margin-top: 10px;
+    text-align: center; /* Center the cronometer text */
+}
+
+@font-face {
+    font-family: 'Otto Attack Type';
+    src: url('fonts/OttoAttackType-Regular.woff2') format('woff2'),
+         url('fonts/OttoAttackType-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#main-title {
+    font-family: 'Otto Attack Type', Helvetica, Arial, sans-serif; /* Use Otto Attack Type for the title */
+    font-size: 3em; /* Large font size for the title */
+    font-weight: bold;
+    color: #d63384; /* Darker pink for the title */
+    margin-bottom: 20px; /* Add spacing below the title */
+    text-transform: uppercase; /* Make the text all caps */
+}
+
+#envelope-text {
+    font-family: Helvetica, Arial, sans-serif; /* Ensure Helvetica is applied */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+    font-size: 1.2em; /* Slightly larger font size */
+    font-weight: bold;
+    color: #ff69b4; /* Match the envelope color */
+    pointer-events: none; /* Ensure the text does not interfere with clicks */
+    z-index: 3; /* Ensure it is above the envelope */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade-out effect */
+}
+
+#envelope.open #envelope-text {
+    opacity: 0; /* Hide the text when the envelope is clicked */
+    pointer-events: none; /* Ensure it doesn't block interactions */
+}
+
+#passcode-dots {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    border: 2px solid white; /* Change border color to white */
+    border-radius: 50%;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.dot.filled {
+    background-color: white; /* Filled dot */
+}
+
+#passcode-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns for the keypad */
+    gap: 10px;
+    justify-content: center;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.key {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    color: black; /* Ensure button text remains black */
+    z-index: 2; /* Ensure buttons are above the background */
+    position: relative; /* Ensure buttons are clickable */
+}
+
+.key:hover {
+    background-color: #ddd;
+}
+
+.key:active {
+    transform: scale(0.95);
+}
+
+.key.clear {
+    grid-column: 2; /* Center the "C" button in the second column */
+    background-color: #ff69b4; /* Pink background for the clear button */
+    color: white;
+}
+
+.key.clear:hover {
+    background-color: #e55a50; /* Darker pink on hover */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+    #passcode-screen {
+        margin-top: 30%;
+    }
+
+    #main-content {
+        margin-top: 15%;
+    }
+
+    #typing-text {
+        font-size: 1em;
+        width: 90%;
+    }
+
+    #envelope {
+        width: 120px;
+        height: 80px;
+    }
+}
+
+#passcode-screen h1 {
+    color: white; /* Ensure the heading text is white */
+    margin-bottom: 20px; /* Add spacing below the heading */
+}
+
+/* Remove shooting stars styles */
+#shooting-stars {
+    display: none; /* Hide the shooting stars container */
+}
+
+/* Remove tulip animation styles */
+#tulip-animation {
+    display: none; /* Hide the tulip animation container */
+}
+
+.girl, .tulip {
+    display: none; /* Remove girl and tulip styles */
+}
+
+#image-container {
+    margin: 20px auto;
+    text-align: center;
+}
+
+#main-image {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    border: 2px solid #ff69b4; /* Add a border matching the theme */
+}
