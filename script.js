@@ -1,7 +1,7 @@
 console.log("Script loaded successfully!");
 
 const passcode = "5555";
-const startDate = new Date("2024-10-15T00:00:00");
+const startDate = new Date("2024-10-16T00:00:00");
 
 const typingText = `Gush, ho provato a farti questo piccolo sito web perchè una delle mie love language è fare nerdate. Grazie per sopportarmi ogni giorno (soprattutto quando gioco a scacchi) e per farmi sempre sentire a casa.`;
 
